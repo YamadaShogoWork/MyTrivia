@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-03 雑学詳細 - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.toolbar{display:flex;gap:6px;padding:6px 16px;border-bottom:0.5px solid #ddd;align-items:center;background:#f7f7f5;justify-content:space-between}
+.btn{height:24px;padding:0 10px;border:0.5px solid #ccc;border-radius:6px;font-size:11px;background:none;color:#666;cursor:pointer}
+.btn.primary{background:#BA7517;color:#fff;border-color:#BA7517}
+.btn.danger{color:#c00;border-color:#c00}
+.content{padding:16px}
+.field{margin-bottom:14px;border-bottom:0.5px solid #eee;padding-bottom:14px}
+.field:last-child{border-bottom:none}
+.field-label{font-size:10px;font-weight:500;color:#999;margin-bottom:4px}
+.field-value{font-size:12px;color:#222;line-height:1.7}
+.tag{display:inline-block;background:#FAEEDA;color:#633806;font-size:10px;padding:2px 7px;border-radius:3px;margin-right:4px}
+.video-link{font-size:11px;color:#BA7517}
+.quiz-box{background:#f7f7f5;border:0.5px solid #ddd;border-radius:8px;padding:12px;margin-top:6px}
+.quiz-label{font-size:10px;font-weight:500;color:#999;margin-bottom:6px}
+.quiz-q{font-size:12px;font-weight:500;color:#222;margin-bottom:6px}
+.quiz-hint{font-size:11px;color:#666}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link active" href="SC-02_trivia_list.html">雑学</a>
+    <a class="nav-link" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="toolbar">
+    <a href="SC-02_trivia_list.html"><button class="btn">← 一覧に戻る</button></a>
+    <div style="display:flex;gap:6px">
+      <a href="SC-05_trivia_edit.html"><button class="btn primary">編集</button></a>
+      <button class="btn danger">削除</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="field">
+      <div class="field-label">タイトル</div>
+      <div class="field-value" style="font-size:15px;font-weight:500">「勉強」はもともと無理やりやることの意味</div>
+    </div>
+    <div class="field">
+      <div class="field-label">本文（クイズの正解も兼ねる）</div>
+      <div class="field-value">「勉」は「無理にする」という意味の漢字で、江戸時代まではネガティブなニュアンスだった。商人が値引きする意味でも使われていた。明治以降に「学習する」という意味が定着したとされる。</div>
+    </div>
+    <div class="field">
+      <div class="field-label">タグ</div>
+      <div class="field-value"><span class="tag">漢語</span><span class="tag">日本語の歴史</span></div>
+    </div>
+    <div class="field">
+      <div class="field-label">参照動画</div>
+      <div class="field-value">
+        <div class="video-link">なぜ「勉強」は勉強というのか？語源を徹底解説</div>
+        <div style="font-size:10px;color:#999;margin-top:2px">参照箇所：動画 12:34 あたり</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">問題文</div>
+      <div class="quiz-box">
+        <div class="quiz-label">出題内容</div>
+        <div class="quiz-q">江戸時代、「勉強」はどんな意味で使われていた？</div>
+        <div class="quiz-hint">正解 → 上記「本文」を参照</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">登録日</div>
+      <div class="field-value" style="color:#999">2024-01-05</div>
+    </div>
+  </div>
+</body>
+</html>

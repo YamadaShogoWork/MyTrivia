@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-13 タグ一覧 - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.toolbar{display:flex;gap:6px;padding:6px 16px;border-bottom:0.5px solid #ddd;align-items:center;background:#f7f7f5}
+.btn{height:24px;padding:0 10px;border:0.5px solid #ccc;border-radius:6px;font-size:11px;background:none;color:#666;cursor:pointer}
+.btn.primary{background:#BA7517;color:#fff;border-color:#BA7517}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:500;color:#666;padding:4px 16px;text-align:left;border-bottom:0.5px solid #ddd}
+td{padding:5px 16px;border-bottom:0.5px solid #eee;font-size:11px;color:#222;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fdf9f2}
+.act{font-size:10px;color:#999;background:none;border:none;cursor:pointer;padding:1px 4px}
+.act:hover{color:#BA7517}
+.tag-pill{display:inline-block;background:#FAEEDA;color:#633806;font-size:10px;padding:2px 8px;border-radius:99px}
+.count{display:inline-block;background:#f7f7f5;color:#666;font-size:10px;padding:1px 6px;border-radius:3px}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link" href="SC-02_trivia_list.html">雑学</a>
+    
+    <a class="nav-link" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link active" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="toolbar">
+    <a href="SC-14_tag_create.html"><button class="btn primary">＋ 新規登録</button></a>
+  </div>
+  <table>
+    <thead>
+      <tr><th>タグ名</th><th>雑学数</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="tag-pill">ラテン語</span></td><td><span class="count">8件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+      <tr><td><span class="tag-pill">漢語</span></td><td><span class="count">12件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+      <tr><td><span class="tag-pill">和語</span></td><td><span class="count">6件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+      <tr><td><span class="tag-pill">英語由来</span></td><td><span class="count">9件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+      <tr><td><span class="tag-pill">ドイツ語</span></td><td><span class="count">3件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+      <tr><td><span class="tag-pill">和製英語</span></td><td><span class="count">4件</span></td><td><a href="SC-15_tag_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

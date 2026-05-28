@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-02 雑学一覧 - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.toolbar{display:flex;gap:6px;padding:6px 16px;border-bottom:0.5px solid #ddd;align-items:center;background:#f7f7f5}
+.search{flex:1;height:24px;border:0.5px solid #ccc;border-radius:6px;padding:0 8px;font-size:11px;background:#fff}
+.btn{height:24px;padding:0 10px;border:0.5px solid #ccc;border-radius:6px;font-size:11px;background:none;color:#666;cursor:pointer}
+.btn.primary{background:#BA7517;color:#fff;border-color:#BA7517}
+.tagbar{display:flex;gap:4px;padding:6px 16px;border-bottom:0.5px solid #ddd;flex-wrap:wrap;align-items:center;background:#f7f7f5}
+.tagbar-label{font-size:10px;color:#999;margin-right:2px}
+.filter-tag{font-size:10px;padding:2px 7px;border-radius:99px;border:0.5px solid #ccc;color:#666;cursor:pointer;background:#fff}
+.filter-tag.on{background:#FAEEDA;color:#633806;border-color:#EF9F27}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:500;color:#666;padding:4px 16px;text-align:left;border-bottom:0.5px solid #ddd}
+td{padding:5px 16px;border-bottom:0.5px solid #eee;font-size:11px;color:#222;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fdf9f2}
+.tag{display:inline-block;background:#FAEEDA;color:#633806;font-size:9px;padding:1px 5px;border-radius:3px;margin-right:2px}
+.act{font-size:10px;color:#999;background:none;border:none;cursor:pointer;padding:1px 4px}
+.act:hover{color:#BA7517}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link active" href="SC-02_trivia_list.html">雑学</a>
+    
+    <a class="nav-link" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="toolbar">
+    <input class="search" placeholder="キーワード検索..." readonly>
+    <button class="btn">タグ絞込 ▾</button>
+    <a href="SC-04_trivia_create.html"><button class="btn primary">＋ 新規登録</button></a>
+  </div>
+  <div class="tagbar">
+    <span class="tagbar-label">タグ：</span>
+    <span class="filter-tag on">すべて</span>
+    <span class="filter-tag">ラテン語</span>
+    <span class="filter-tag">漢語</span>
+    <span class="filter-tag">和語</span>
+    <span class="filter-tag">英語由来</span>
+    <span class="filter-tag">ドイツ語</span>
+    <span class="filter-tag">和製英語</span>
+  </div>
+  <table>
+    <thead>
+      <tr><th>タイトル</th><th>本文（抜粋）</th><th>タグ</th><th>参照動画</th><th>登録日</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="SC-03_trivia_detail.html" style="color:#BA7517">「勉強」はもともと無理やりやることの意味</a></td>
+        <td style="color:#666;max-width:180px">「勉」は「無理にする」という意味の漢字で…</td>
+        <td><span class="tag">漢語</span></td>
+        <td style="color:#666">勉強の語源を...</td>
+        <td style="color:#999">2024-01-05</td>
+        <td><a href="SC-05_trivia_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td><a href="SC-03_trivia_detail.html" style="color:#BA7517">キャンペーンの語源は「平野」</a></td>
+        <td style="color:#666;max-width:180px">campaignはラテン語のcampus（平野）が語源…</td>
+        <td><span class="tag">ラテン語</span></td>
+        <td style="color:#666">カタカナ語の...</td>
+        <td style="color:#999">2024-01-08</td>
+        <td><a href="SC-05_trivia_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td><a href="SC-03_trivia_detail.html" style="color:#BA7517">「なるほど」は明治時代からある言葉</a></td>
+        <td style="color:#666;max-width:180px">「なるほど」の初出は明治初期…</td>
+        <td><span class="tag">和語</span></td>
+        <td style="color:#999">—</td>
+        <td style="color:#999">2024-01-10</td>
+        <td><a href="SC-05_trivia_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td><a href="SC-03_trivia_detail.html" style="color:#BA7517">「アルバイト」はドイツ語の「仕事」</a></td>
+        <td style="color:#666;max-width:180px">Arbeitはドイツ語で「労働・仕事」の意…</td>
+        <td><span class="tag">ドイツ語</span></td>
+        <td style="color:#666">外来語の歴史...</td>
+        <td style="color:#999">2024-01-12</td>
+        <td><a href="SC-05_trivia_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td><a href="SC-03_trivia_detail.html" style="color:#BA7517">「ハイジャック」の語源は諸説あり</a></td>
+        <td style="color:#666;max-width:180px">hi jack! という呼びかけが語源という説が…</td>
+        <td><span class="tag">英語由来</span></td>
+        <td style="color:#666">英語の謎語源...</td>
+        <td style="color:#999">2024-01-15</td>
+        <td><a href="SC-05_trivia_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

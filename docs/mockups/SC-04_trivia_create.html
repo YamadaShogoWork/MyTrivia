@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-04 雑学登録 - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.toolbar{display:flex;gap:6px;padding:6px 16px;border-bottom:0.5px solid #ddd;align-items:center;background:#f7f7f5}
+.btn{height:24px;padding:0 10px;border:0.5px solid #ccc;border-radius:6px;font-size:11px;background:none;color:#666;cursor:pointer}
+.btn.primary{background:#BA7517;color:#fff;border-color:#BA7517}
+.form{padding:16px;display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field-label{font-size:10px;font-weight:500;color:#999}
+.field-label .req{color:#c00;margin-left:2px}
+input[type=text],select,textarea{width:100%;border:0.5px solid #ccc;border-radius:6px;padding:6px 8px;font-size:11px;color:#222;font-family:sans-serif;background:#fff}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:#BA7517}
+textarea{resize:vertical;min-height:72px;line-height:1.7}
+.tag-checkboxes{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tag-check{display:flex;align-items:center;gap:3px;font-size:11px;color:#444;cursor:pointer}
+.tag-check input{accent-color:#BA7517}
+.divider{font-size:10px;font-weight:500;color:#BA7517;border-bottom:0.5px solid #FAEEDA;padding-bottom:4px;margin-top:4px}
+.hint{font-size:10px;color:#999;margin-top:2px}
+.form-actions{display:flex;gap:8px;padding:0 16px 16px}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link active" href="SC-02_trivia_list.html">雑学</a>
+    <a class="nav-link" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="toolbar">
+    <a href="SC-02_trivia_list.html"><button class="btn">← 一覧に戻る</button></a>
+  </div>
+  <div class="form">
+    <div class="divider">雑学の内容</div>
+    <div class="field">
+      <label class="field-label">タイトル<span class="req">*</span></label>
+      <input type="text" placeholder="例：「勉強」はもともと無理やりやることの意味">
+    </div>
+    <div class="field">
+      <label class="field-label">本文<span class="req">*</span>　<span style="font-weight:normal;color:#999">（クイズの正解も兼ねる）</span></label>
+      <textarea placeholder="雑学の詳しい説明を書いてください"></textarea>
+    </div>
+    <div class="field">
+      <label class="field-label">タグ</label>
+      <div class="tag-checkboxes">
+        <label class="tag-check"><input type="checkbox"> ラテン語</label>
+        <label class="tag-check"><input type="checkbox"> 漢語</label>
+        <label class="tag-check"><input type="checkbox"> 和語</label>
+        <label class="tag-check"><input type="checkbox"> 英語由来</label>
+        <label class="tag-check"><input type="checkbox"> ドイツ語</label>
+        <label class="tag-check"><input type="checkbox"> 和製英語</label>
+      </div>
+    </div>
+    <div class="divider">参照動画</div>
+    <div class="field">
+      <label class="field-label">参照動画</label>
+      <select>
+        <option value="">（なし）</option>
+        <option>なぜ「勉強」は勉強というのか？語源を徹底解説</option>
+        <option>カタカナ語の意外なルーツ【ゆる言語学ラジオ】</option>
+        <option>外来語の歴史をひもとく</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="field-label">動画内の参照箇所メモ</label>
+      <input type="text" placeholder="例：12:34 あたり">
+    </div>
+    <div class="divider">問題文（任意）</div>
+    <div class="field">
+      <label class="field-label">問題文</label>
+      <input type="text" placeholder="例：江戸時代、「勉強」はどんな意味で使われていた？">
+      <div class="hint">正解は「本文」が使われます。</div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button class="btn primary">登録する</button>
+    <a href="SC-02_trivia_list.html"><button class="btn">キャンセル</button></a>
+  </div>
+</body>
+</html>

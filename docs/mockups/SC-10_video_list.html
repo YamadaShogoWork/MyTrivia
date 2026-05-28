@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-10 動画一覧 - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.toolbar{display:flex;gap:6px;padding:6px 16px;border-bottom:0.5px solid #ddd;align-items:center;background:#f7f7f5}
+.search{flex:1;height:24px;border:0.5px solid #ccc;border-radius:6px;padding:0 8px;font-size:11px;background:#fff}
+.btn{height:24px;padding:0 10px;border:0.5px solid #ccc;border-radius:6px;font-size:11px;background:none;color:#666;cursor:pointer}
+.btn.primary{background:#BA7517;color:#fff;border-color:#BA7517}
+table{width:100%;border-collapse:collapse}
+th{font-size:10px;font-weight:500;color:#666;padding:4px 16px;text-align:left;border-bottom:0.5px solid #ddd}
+td{padding:5px 16px;border-bottom:0.5px solid #eee;font-size:11px;color:#222;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fdf9f2}
+.act{font-size:10px;color:#999;background:none;border:none;cursor:pointer;padding:1px 4px}
+.act:hover{color:#BA7517}
+.url-link{color:#BA7517;font-size:10px}
+.trivia-count{display:inline-block;background:#FAEEDA;color:#633806;font-size:9px;padding:1px 5px;border-radius:3px}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link" href="SC-02_trivia_list.html">雑学</a>
+    
+    <a class="nav-link active" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="toolbar">
+    <input class="search" placeholder="動画タイトル検索..." readonly>
+    <a href="SC-11_video_create.html"><button class="btn primary">＋ 新規登録</button></a>
+  </div>
+  <table>
+    <thead>
+      <tr><th>動画タイトル</th><th>URL</th><th>公開日</th><th>雑学数</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>なぜ「勉強」は勉強というのか？語源を徹底解説</td>
+        <td><a class="url-link" href="#">youtube.com/watch?v=xxx1</a></td>
+        <td style="color:#999">2023-04-10</td>
+        <td><span class="trivia-count">3件</span></td>
+        <td><a href="SC-12_video_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td>カタカナ語の意外なルーツ【ゆる言語学ラジオ】</td>
+        <td><a class="url-link" href="#">youtube.com/watch?v=xxx2</a></td>
+        <td style="color:#999">2023-06-22</td>
+        <td><span class="trivia-count">5件</span></td>
+        <td><a href="SC-12_video_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+      <tr>
+        <td>外来語の歴史をひもとく</td>
+        <td><a class="url-link" href="#">youtube.com/watch?v=xxx3</a></td>
+        <td style="color:#999">2023-09-05</td>
+        <td><span class="trivia-count">2件</span></td>
+        <td><a href="SC-12_video_edit.html"><button class="act">編集</button></a><button class="act" style="color:#c00">削除</button></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SC-01 ホーム - 言語学雑学管理システム</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-size:12px;font-family:sans-serif;background:#fff;color:#222}
+a{text-decoration:none;color:inherit}
+.nav{display:flex;align-items:center;gap:16px;padding:8px 16px;border-bottom:0.5px solid #ddd}
+.nav-title{font-size:13px;font-weight:500;margin-right:8px}
+.nav-link{font-size:11px;color:#666}
+.nav-link.active{color:#BA7517;font-weight:500}
+.hero{padding:20px 16px 14px;border-bottom:0.5px solid #ddd;background:#f7f7f5}
+.hero-title{font-size:16px;font-weight:500;margin-bottom:4px}
+.hero-sub{font-size:11px;color:#666}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px;border-bottom:0.5px solid #ddd}
+.stat{background:#f7f7f5;border-radius:8px;padding:10px 12px}
+.stat-label{font-size:10px;color:#666;margin-bottom:4px}
+.stat-num{font-size:20px;font-weight:500;color:#BA7517}
+.stat-sub{font-size:10px;color:#999}
+.section{padding:10px 16px;border-bottom:0.5px solid #ddd}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.section-title{font-size:11px;font-weight:500;color:#666}
+.section-link{font-size:10px;color:#BA7517}
+.row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:0.5px solid #eee;gap:8px}
+.row:last-child{border-bottom:none}
+.row-title{font-size:11px;color:#222}
+.row-right{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.tag{display:inline-block;background:#FAEEDA;color:#633806;font-size:9px;padding:1px 5px;border-radius:3px}
+.date{font-size:10px;color:#999}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px}
+.qbtn{border:0.5px solid #ccc;border-radius:8px;padding:10px 8px;text-align:center;cursor:pointer;background:none;display:block}
+.qbtn:hover{background:#f7f7f5}
+.qbtn-icon{font-size:18px;color:#BA7517;display:block;margin-bottom:4px}
+.qbtn-label{font-size:10px;color:#666}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <span class="nav-title">言語学雑学</span>
+    <a class="nav-link active" href="SC-01_home.html">ホーム</a>
+    <a class="nav-link" href="SC-02_trivia_list.html">雑学</a>
+    <a class="nav-link" href="SC-10_video_list.html">動画</a>
+    <a class="nav-link" href="SC-13_tag_list.html">タグ</a>
+  </div>
+  <div class="hero">
+    <div class="hero-title">ゆる言語学ラジオ 雑学メモ</div>
+    <div class="hero-sub">語源・外来語・日本語の雑学をためていくシステム</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">雑学</div><div class="stat-num">42</div><div class="stat-sub">件登録済み</div></div>
+    <div class="stat"><div class="stat-label">動画</div><div class="stat-num">9</div><div class="stat-sub">件登録済み</div></div>
+    <div class="stat"><div class="stat-label">タグ</div><div class="stat-num">12</div><div class="stat-sub">種類</div></div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title">最近登録した雑学</span>
+      <a class="section-link" href="SC-02_trivia_list.html">すべて見る →</a>
+    </div>
+    <div class="row"><span class="row-title">「勉強」はもともと無理やりやることの意味</span><div class="row-right"><span class="tag">漢語</span><span class="date">01/05</span></div></div>
+    <div class="row"><span class="row-title">キャンペーンの語源は「平野」</span><div class="row-right"><span class="tag">ラテン語</span><span class="date">01/08</span></div></div>
+    <div class="row"><span class="row-title">「なるほど」は明治時代からある言葉</span><div class="row-right"><span class="tag">和語</span><span class="date">01/10</span></div></div>
+    <div class="row"><span class="row-title">「アルバイト」はドイツ語の「仕事」</span><div class="row-right"><span class="tag">ドイツ語</span><span class="date">01/12</span></div></div>
+  </div>
+  <div class="quick">
+    <a class="qbtn" href="SC-04_trivia_create.html"><span class="qbtn-icon">＋</span><div class="qbtn-label">雑学を登録</div></a>
+    <a class="qbtn" href="SC-11_video_create.html"><span class="qbtn-icon">動</span><div class="qbtn-label">動画を登録</div></a>
+    <a class="qbtn" href="SC-13_tag_list.html"><span class="qbtn-icon">#</span><div class="qbtn-label">タグを管理</div></a>
+  </div>
+</body>
+</html>

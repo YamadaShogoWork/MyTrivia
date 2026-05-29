@@ -1,0 +1,67 @@
+@model Trivia
+@{
+    ViewData["Title"] = "雑学編集";
+    ViewData["ActiveNav"] = "Trivia";
+    var tags = ViewBag.Tags as IEnumerable<Tag> ?? new List<Tag>();
+    var videos = ViewBag.Videos as IEnumerable<Video> ?? new List<Video>();
+    var selectedTagIds = ViewBag.SelectedTagIds as IEnumerable<int> ?? new List<int>();
+}
+
+<div class="toolbar">
+    <a asp-action="Detail" asp-route-id="@Model.Id"><button class="btn">← 詳細に戻る</button></a>
+</div>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="CreatedAt" />
+    <div class="form">
+        <div class="divider">雑学の内容</div>
+        <div class="field">
+            <label class="field-label">タイトル<span class="req">*</span></label>
+            <input type="text" asp-for="TriviaTitle">
+            <span asp-validation-for="TriviaTitle" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">
+                本文<span class="req">*</span>
+                <span style="font-weight:normal;color:#999;">（クイズの正解も兼ねる）</span>
+            </label>
+            <textarea asp-for="TriviaBody"></textarea>
+            <span asp-validation-for="TriviaBody" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">タグ</label>
+            <div class="tag-checkboxes">
+                @foreach (var tag in tags)
+                {
+                    <label class="tag-check">
+                        <input type="checkbox" name="selectedTagIds" value="@tag.Id"
+                               @(selectedTagIds.Contains(tag.Id) ? "checked" : "")>
+                        @tag.TagName
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="divider">参照動画</div>
+        <div class="field">
+            <label class="field-label">参照動画</label>
+            <select asp-for="VideoId">
+                <option value="">（なし）</option>
+                @foreach (var video in videos)
+                {
+                    <option value="@video.Id" selected="@(Model.VideoId == video.Id ? "selected" : "")">@video.VideoTitle</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <label class="field-label">動画内の参照箇所メモ</label>
+            <input type="text" asp-for="Source">
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn primary">更新する</button>
+        <a asp-action="Detail" asp-route-id="@Model.Id"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>

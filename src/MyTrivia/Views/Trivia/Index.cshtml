@@ -1,0 +1,87 @@
+@model IEnumerable<Trivia>
+@{
+    ViewData["Title"] = "雑学一覧";
+    ViewData["ActiveNav"] = "Trivia";
+    var tags = ViewBag.Tags as IEnumerable<Tag> ?? new List<Tag>();
+    var selectedTagId = ViewBag.SelectedTagId as int?;
+    var keyword = ViewBag.Keyword as string ?? "";
+}
+
+<div class="toolbar">
+    <form method="get" asp-action="Index" style="display:flex;gap:6px;flex:1;align-items:center;">
+        <input class="search" type="text" name="keyword" value="@keyword"
+               placeholder="キーワード検索..." style="flex:1;height:24px;border:0.5px solid #ccc;border-radius:6px;padding:0 8px;font-size:11px;">
+        <button type="submit" class="btn">検索</button>
+        @if (!string.IsNullOrEmpty(keyword) || selectedTagId.HasValue)
+        {
+            <a href="@Url.Action("Index")" class="btn">クリア</a>
+        }
+    </form>
+    <a asp-action="Create"><button class="btn primary">＋ 新規登録</button></a>
+</div>
+
+<div style="display:flex;gap:4px;padding:6px 16px;border-bottom:0.5px solid #ddd;flex-wrap:wrap;align-items:center;background:#f7f7f5;">
+    <span style="font-size:10px;color:#999;margin-right:2px;">タグ：</span>
+    <a href="@Url.Action("Index", new { keyword })"
+       style="font-size:10px;padding:2px 7px;border-radius:99px;border:0.5px solid @(selectedTagId == null ? "#EF9F27" : "#ccc");color:@(selectedTagId == null ? "#633806" : "#666");background:@(selectedTagId == null ? "#FAEEDA" : "#fff");">
+        すべて
+    </a>
+    @foreach (var tag in tags)
+    {
+        var isSelected = selectedTagId == tag.Id;
+        <a href="@Url.Action("Index", new { tagId = tag.Id, keyword })"
+           style="font-size:10px;padding:2px 7px;border-radius:99px;border:0.5px solid @(isSelected ? "#EF9F27" : "#ccc");color:@(isSelected ? "#633806" : "#666");background:@(isSelected ? "#FAEEDA" : "#fff");">
+            @tag.TagName
+        </a>
+    }
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>本文（抜粋）</th>
+            <th>タグ</th>
+            <th>参照動画</th>
+            <th>登録日</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trivia in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Detail" asp-route-id="@trivia.Id" style="color:#BA7517;">
+                        @trivia.TriviaTitle
+                    </a>
+                </td>
+                <td style="color:#666;max-width:180px;">
+                    @(trivia.TriviaBody.Length > 40 ? trivia.TriviaBody.Substring(0, 40) + "…" : trivia.TriviaBody)
+                </td>
+                <td>
+                    @foreach (var tt in trivia.TriviaTags)
+                    {
+                        <span class="tag">@tt.Tag.TagName</span>
+                    }
+                </td>
+                <td style="color:#666;">
+                    @(trivia.Video != null ? trivia.Video.VideoTitle.Substring(0, Math.Min(trivia.Video.VideoTitle.Length, 15)) + "..." : "—")
+                </td>
+                <td style="color:#999;">@trivia.CreatedAt.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@trivia.Id"><button class="act">編集</button></a>
+                    <form asp-action="Delete" asp-route-id="@trivia.Id" method="post" style="display:inline;"
+                          onsubmit="return confirm('削除しますか？');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="act" style="color:#c00;">削除</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="6" style="text-align:center;color:#999;padding:20px;">雑学が登録されていません。</td></tr>
+        }
+    </tbody>
+</table>

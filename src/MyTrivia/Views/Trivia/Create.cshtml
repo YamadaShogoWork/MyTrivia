@@ -1,0 +1,64 @@
+@model Trivia
+@{
+    ViewData["Title"] = "雑学登録";
+    ViewData["ActiveNav"] = "Trivia";
+    var tags = ViewBag.Tags as IEnumerable<Tag> ?? new List<Tag>();
+    var videos = ViewBag.Videos as IEnumerable<Video> ?? new List<Video>();
+}
+
+<div class="toolbar">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+</div>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form">
+        <div class="divider">雑学の内容</div>
+        <div class="field">
+            <label class="field-label">タイトル<span class="req">*</span></label>
+            <input type="text" asp-for="TriviaTitle" placeholder="例：「勉強」はもともと無理やりやることの意味">
+            <span asp-validation-for="TriviaTitle" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">
+                本文<span class="req">*</span>
+                <span style="font-weight:normal;color:#999;">（クイズの正解も兼ねる）</span>
+            </label>
+            <textarea asp-for="TriviaBody" placeholder="雑学の詳しい説明を書いてください"></textarea>
+            <span asp-validation-for="TriviaBody" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">タグ</label>
+            <div class="tag-checkboxes">
+                @foreach (var tag in tags)
+                {
+                    <label class="tag-check">
+                        <input type="checkbox" name="selectedTagIds" value="@tag.Id">
+                        @tag.TagName
+                    </label>
+                }
+            </div>
+        </div>
+
+        <div class="divider">参照動画</div>
+        <div class="field">
+            <label class="field-label">参照動画</label>
+            <select asp-for="VideoId">
+                <option value="">（なし）</option>
+                @foreach (var video in videos)
+                {
+                    <option value="@video.Id">@video.VideoTitle</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <label class="field-label">動画内の参照箇所メモ</label>
+            <input type="text" asp-for="Source" placeholder="例：12:34 あたり">
+        </div>
+
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn primary">登録する</button>
+        <a asp-action="Index"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>

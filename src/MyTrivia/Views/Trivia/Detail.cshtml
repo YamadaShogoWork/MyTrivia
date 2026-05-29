@@ -1,0 +1,75 @@
+@model Trivia
+@{
+    ViewData["Title"] = Model.TriviaTitle;
+    ViewData["ActiveNav"] = "Trivia";
+}
+
+<div class="toolbar" style="justify-content:space-between;">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+    <div style="display:flex;gap:6px;">
+        <a asp-action="Edit" asp-route-id="@Model.Id"><button class="btn primary">編集</button></a>
+        <form asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display:inline;"
+              onsubmit="return confirm('削除しますか？');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn danger">削除</button>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="field-block">
+        <div class="field-block-label">タイトル</div>
+        <div class="field-block-value" style="font-size:15px;font-weight:500;">@Model.TriviaTitle</div>
+    </div>
+    <div class="field-block">
+        <div class="field-block-label">本文（クイズの正解も兼ねる）</div>
+        <div class="field-block-value">@Model.TriviaBody</div>
+    </div>
+    <div class="field-block">
+        <div class="field-block-label">タグ</div>
+        <div class="field-block-value">
+            @foreach (var tt in Model.TriviaTags)
+            {
+                <span class="tag" style="font-size:10px;padding:2px 7px;">@tt.Tag.TagName</span>
+            }
+            @if (!Model.TriviaTags.Any())
+            {
+                <span style="color:#999;">なし</span>
+            }
+        </div>
+    </div>
+    <div class="field-block">
+        <div class="field-block-label">参照動画</div>
+        <div class="field-block-value">
+            @if (Model.Video != null)
+            {
+                <div style="font-size:11px;color:#BA7517;">
+                    <a href="@Model.Video.VideoUrl" target="_blank" style="color:#BA7517;">@Model.Video.VideoTitle</a>
+                </div>
+                if (!string.IsNullOrEmpty(Model.Source))
+                {
+                    <div style="font-size:10px;color:#999;margin-top:2px;">参照箇所：@Model.Source</div>
+                }
+            }
+            else
+            {
+                <span style="color:#999;">なし</span>
+            }
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.QuizQuestion))
+    {
+        <div class="field-block">
+            <div class="field-block-label">問題文</div>
+            <div style="background:#f7f7f5;border:0.5px solid #ddd;border-radius:8px;padding:12px;margin-top:6px;">
+                <div style="font-size:10px;font-weight:500;color:#999;margin-bottom:6px;">出題内容</div>
+                <div style="font-size:12px;font-weight:500;color:#222;margin-bottom:6px;">@Model.QuizQuestion</div>
+                <div style="font-size:11px;color:#666;">正解 → 上記「本文」を参照</div>
+            </div>
+        </div>
+    }
+    <div class="field-block">
+        <div class="field-block-label">登録日</div>
+        <div class="field-block-value" style="color:#999;">@Model.CreatedAt.ToString("yyyy-MM-dd")</div>
+    </div>
+</div>

@@ -1,50 +1,65 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MyTrivia</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MyTrivia.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - 言語学雑学</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-size: 12px; font-family: sans-serif; background: #fff; color: #222; }
+        a { text-decoration: none; color: inherit; }
+        .nav { display: flex; align-items: center; gap: 16px; padding: 8px 16px; border-bottom: 0.5px solid #ddd; }
+        .nav-title { font-size: 13px; font-weight: 500; margin-right: 8px; }
+        .nav-link { font-size: 11px; color: #666; }
+        .nav-link.active { color: #BA7517; font-weight: 500; }
+        .nav-link:hover { color: #BA7517; }
+        .btn { height: 24px; padding: 0 10px; border: 0.5px solid #ccc; border-radius: 6px; font-size: 11px; background: none; color: #666; cursor: pointer; }
+        .btn:hover { background: #f7f7f5; }
+        .btn.primary { background: #BA7517; color: #fff; border-color: #BA7517; }
+        .btn.primary:hover { background: #9d6414; }
+        .btn.danger { color: #c00; border-color: #c00; }
+        .btn.danger:hover { background: #fff0f0; }
+        .tag { display: inline-block; background: #FAEEDA; color: #633806; font-size: 9px; padding: 1px 5px; border-radius: 3px; margin-right: 2px; }
+        .toolbar { display: flex; gap: 6px; padding: 6px 16px; border-bottom: 0.5px solid #ddd; align-items: center; background: #f7f7f5; }
+        table { width: 100%; border-collapse: collapse; }
+        th { font-size: 10px; font-weight: 500; color: #666; padding: 4px 16px; text-align: left; border-bottom: 0.5px solid #ddd; }
+        td { padding: 5px 16px; border-bottom: 0.5px solid #eee; font-size: 11px; color: #222; vertical-align: middle; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #fdf9f2; }
+        .act { font-size: 10px; color: #999; background: none; border: none; cursor: pointer; padding: 1px 4px; }
+        .act:hover { color: #BA7517; }
+        .form { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+        .field { display: flex; flex-direction: column; gap: 4px; }
+        .field-label { font-size: 10px; font-weight: 500; color: #999; }
+        .req { color: #c00; margin-left: 2px; }
+        input[type=text], input[type=date], input[type=url], select, textarea {
+            width: 100%; border: 0.5px solid #ccc; border-radius: 6px;
+            padding: 6px 8px; font-size: 11px; color: #222; font-family: sans-serif; background: #fff;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #BA7517; }
+        textarea { resize: vertical; min-height: 72px; line-height: 1.7; }
+        .tag-checkboxes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+        .tag-check { display: flex; align-items: center; gap: 3px; font-size: 11px; color: #444; cursor: pointer; }
+        .tag-check input { accent-color: #BA7517; width: auto; }
+        .divider { font-size: 10px; font-weight: 500; color: #BA7517; border-bottom: 0.5px solid #FAEEDA; padding-bottom: 4px; margin-top: 4px; }
+        .hint { font-size: 10px; color: #999; margin-top: 2px; }
+        .form-actions { display: flex; gap: 8px; padding: 0 16px 16px; }
+        .content { padding: 16px; }
+        .field-block { margin-bottom: 14px; border-bottom: 0.5px solid #eee; padding-bottom: 14px; }
+        .field-block:last-child { border-bottom: none; }
+        .field-block-label { font-size: 10px; font-weight: 500; color: #999; margin-bottom: 4px; }
+        .field-block-value { font-size: 12px; color: #222; line-height: 1.7; }
+        .validation-error { color: #c00; font-size: 10px; margin-top: 2px; }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyTrivia</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="nav">
+        <span class="nav-title">言語学雑学</span>
+        <a class="nav-link @(ViewData["ActiveNav"]?.ToString() == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">ホーム</a>
+        <a class="nav-link @(ViewData["ActiveNav"]?.ToString() == "Trivia" ? "active" : "")" asp-controller="Trivia" asp-action="Index">雑学</a>
+        <a class="nav-link @(ViewData["ActiveNav"]?.ToString() == "Video" ? "active" : "")" asp-controller="Video" asp-action="Index">動画</a>
+        <a class="nav-link @(ViewData["ActiveNav"]?.ToString() == "Tag" ? "active" : "")" asp-controller="Tag" asp-action="Index">タグ</a>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - MyTrivia - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderBody()
 </body>
 </html>

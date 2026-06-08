@@ -1,24 +1,30 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MyTrivia.Models;
+using Microsoft.EntityFrameworkCore;
+using MyTrivia.Data;
 
 namespace MyTrivia.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly AppDbContext _context;
+
+    public HomeController(AppDbContext context)
     {
-        return View();
+        _context = context;
     }
 
-    public IActionResult Privacy()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
+        ViewBag.TriviaCount = await _context.Trivias.CountAsync();
+        ViewBag.VideoCount = await _context.Videos.CountAsync();
+        ViewBag.TagCount = await _context.Tags.CountAsync();
+        ViewBag.RecentTrivias = await _context.Trivias
+            .Include(t => t.TriviaTags)
+                .ThenInclude(tt => tt.Tag)
+            .OrderByDescending(t => t.CreatedAt)
+            .Take(4)
+            .ToListAsync();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View();
     }
 }

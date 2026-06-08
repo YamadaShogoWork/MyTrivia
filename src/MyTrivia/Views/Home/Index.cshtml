@@ -1,8 +1,71 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ホーム";
+    ViewData["ActiveNav"] = "Home";
+    var recentTrivias = ViewBag.RecentTrivias as IEnumerable<MyTrivia.Models.Trivia> ?? new List<MyTrivia.Models.Trivia>();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="padding:20px 16px 14px;border-bottom:0.5px solid #ddd;background:#f7f7f5;">
+    <div style="font-size:16px;font-weight:500;margin-bottom:4px;">ゆる言語学ラジオ 雑学メモ</div>
+    <div style="font-size:11px;color:#666;">語源・外来語・日本語の雑学をためていくシステム</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px;border-bottom:0.5px solid #ddd;">
+    <div style="background:#f7f7f5;border-radius:8px;padding:10px 12px;">
+        <div style="font-size:10px;color:#666;margin-bottom:4px;">雑学</div>
+        <div style="font-size:20px;font-weight:500;color:#BA7517;">@ViewBag.TriviaCount</div>
+        <div style="font-size:10px;color:#999;">件登録済み</div>
+    </div>
+    <div style="background:#f7f7f5;border-radius:8px;padding:10px 12px;">
+        <div style="font-size:10px;color:#666;margin-bottom:4px;">動画</div>
+        <div style="font-size:20px;font-weight:500;color:#BA7517;">@ViewBag.VideoCount</div>
+        <div style="font-size:10px;color:#999;">件登録済み</div>
+    </div>
+    <div style="background:#f7f7f5;border-radius:8px;padding:10px 12px;">
+        <div style="font-size:10px;color:#666;margin-bottom:4px;">タグ</div>
+        <div style="font-size:20px;font-weight:500;color:#BA7517;">@ViewBag.TagCount</div>
+        <div style="font-size:10px;color:#999;">種類</div>
+    </div>
+</div>
+
+<div style="padding:10px 16px;border-bottom:0.5px solid #ddd;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:11px;font-weight:500;color:#666;">最近登録した雑学</span>
+        <a asp-controller="Trivia" asp-action="Index" style="font-size:10px;color:#BA7517;">すべて見る →</a>
+    </div>
+    @foreach (var trivia in recentTrivias)
+    {
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:0.5px solid #eee;gap:8px;">
+            <a asp-controller="Trivia" asp-action="Detail" asp-route-id="@trivia.Id"
+               style="font-size:11px;color:#222;">@trivia.TriviaTitle</a>
+            <div style="display:flex;gap:4px;align-items:center;flex-shrink:0;">
+                @foreach (var tt in trivia.TriviaTags.Take(1))
+                {
+                    <span style="display:inline-block;background:#FAEEDA;color:#633806;font-size:9px;padding:1px 5px;border-radius:3px;">@tt.Tag.TagName</span>
+                }
+                <span style="font-size:10px;color:#999;">@trivia.CreatedAt.ToString("MM/dd")</span>
+            </div>
+        </div>
+    }
+    @if (!recentTrivias.Any())
+    {
+        <div style="color:#999;font-size:11px;padding:8px 0;">まだ雑学が登録されていません。</div>
+    }
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px;">
+    <a asp-controller="Trivia" asp-action="Create"
+       style="border:0.5px solid #ccc;border-radius:8px;padding:10px 8px;text-align:center;display:block;">
+        <div style="font-size:18px;color:#BA7517;margin-bottom:4px;">＋</div>
+        <div style="font-size:10px;color:#666;">雑学を登録</div>
+    </a>
+    <a asp-controller="Video" asp-action="Create"
+       style="border:0.5px solid #ccc;border-radius:8px;padding:10px 8px;text-align:center;display:block;">
+        <div style="font-size:18px;color:#BA7517;margin-bottom:4px;">▶</div>
+        <div style="font-size:10px;color:#666;">動画を登録</div>
+    </a>
+    <a asp-controller="Tag" asp-action="Index"
+       style="border:0.5px solid #ccc;border-radius:8px;padding:10px 8px;text-align:center;display:block;">
+        <div style="font-size:18px;color:#BA7517;margin-bottom:4px;">#</div>
+        <div style="font-size:10px;color:#666;">タグを管理</div>
+    </a>
 </div>

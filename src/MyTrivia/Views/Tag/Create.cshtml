@@ -1,0 +1,25 @@
+@model Tag
+@{
+    ViewData["Title"] = "タグ登録";
+    ViewData["ActiveNav"] = "Tag";
+}
+
+<div class="toolbar">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+</div>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form">
+        <div class="field">
+            <label class="field-label">タグ名<span class="req">*</span></label>
+            <input type="text" asp-for="TagName" placeholder="例：フランス語">
+            <div class="hint">雑学に付けるラベルです。重複しないよう注意してください。</div>
+            <span asp-validation-for="TagName" class="validation-error"></span>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn primary">登録する</button>
+        <a asp-action="Index"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>

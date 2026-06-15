@@ -1,0 +1,35 @@
+@model Video
+@{
+    ViewData["Title"] = "動画編集";
+    ViewData["ActiveNav"] = "Video";
+}
+
+<div class="toolbar">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+</div>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <div class="form">
+        <div class="field">
+            <label class="field-label">動画タイトル<span class="req">*</span></label>
+            <input type="text" asp-for="VideoTitle">
+            <span asp-validation-for="VideoTitle" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">YouTube URL<span class="req">*</span></label>
+            <input type="url" asp-for="VideoUrl">
+            <span asp-validation-for="VideoUrl" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">公開日</label>
+            <input type="date" asp-for="PublishedAt">
+            <span asp-validation-for="PublishedAt" class="validation-error"></span>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn primary">更新する</button>
+        <a asp-action="Index"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>

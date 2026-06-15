@@ -1,0 +1,35 @@
+@model Video
+@{
+    ViewData["Title"] = "動画登録";
+    ViewData["ActiveNav"] = "Video";
+}
+
+<div class="toolbar">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+</div>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form">
+        <div class="field">
+            <label class="field-label">動画タイトル<span class="req">*</span></label>
+            <input type="text" asp-for="VideoTitle" placeholder="例：なぜ「勉強」は勉強というのか？語源を徹底解説">
+            <span asp-validation-for="VideoTitle" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">YouTube URL<span class="req">*</span></label>
+            <input type="url" asp-for="VideoUrl" placeholder="例：https://youtube.com/watch?v=xxxxx">
+            <div class="hint">動画のURLをそのまま貼り付けてください。</div>
+            <span asp-validation-for="VideoUrl" class="validation-error"></span>
+        </div>
+        <div class="field">
+            <label class="field-label">公開日</label>
+            <input type="date" asp-for="PublishedAt">
+            <span asp-validation-for="PublishedAt" class="validation-error"></span>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn primary">登録する</button>
+        <a asp-action="Index"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>

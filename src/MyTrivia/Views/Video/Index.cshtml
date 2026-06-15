@@ -1,0 +1,55 @@
+@model IEnumerable<Video>
+@{
+    ViewData["Title"] = "動画一覧";
+    ViewData["ActiveNav"] = "Video";
+    var triviaCounts = ViewBag.TriviaCounts as Dictionary<int, int> ?? new Dictionary<int, int>();
+}
+
+<div class="toolbar">
+    <a asp-action="Create"><button class="btn primary">＋ 新規登録</button></a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>動画タイトル</th>
+            <th>URL</th>
+            <th>公開日</th>
+            <th>雑学数</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var video in Model)
+        {
+            <tr>
+                <td>@video.VideoTitle</td>
+                <td>
+                    <a href="@video.VideoUrl" target="_blank" style="color:#BA7517;font-size:10px;">
+                        @(video.VideoUrl.Length > 35 ? video.VideoUrl.Substring(0, 35) + "…" : video.VideoUrl)
+                    </a>
+                </td>
+                <td style="color:#999;">
+                    @(video.PublishedAt.HasValue ? video.PublishedAt.Value.ToString("yyyy-MM-dd") : "—")
+                </td>
+                <td>
+                    <span style="display:inline-block;background:#FAEEDA;color:#633806;font-size:9px;padding:1px 5px;border-radius:3px;">
+                        @(triviaCounts.ContainsKey(video.Id) ? triviaCounts[video.Id] : 0)件
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@video.Id"><button class="act">編集</button></a>
+                    <form asp-action="Delete" asp-route-id="@video.Id" method="post" style="display:inline;"
+                          onsubmit="return confirm('削除しますか？紐づく雑学の参照動画はNULLになります。');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="act" style="color:#c00;">削除</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr><td colspan="5" style="text-align:center;color:#999;padding:20px;">動画が登録されていません。</td></tr>
+        }
+    </tbody>
+</table>

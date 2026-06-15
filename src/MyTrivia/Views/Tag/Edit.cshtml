@@ -1,0 +1,29 @@
+@model Tag
+@{
+    ViewData["Title"] = "タグ編集";
+    ViewData["ActiveNav"] = "Tag";
+}
+
+<div class="toolbar">
+    <a asp-action="Index"><button class="btn">← 一覧に戻る</button></a>
+</div>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <div class="form">
+        <div class="field">
+            <label class="field-label">タグ名<span class="req">*</span></label>
+            <input type="text" asp-for="TagName">
+            <div class="hint">このタグは現在 @ViewBag.TriviaCount 件の雑学に使われています。</div>
+            <span asp-validation-for="TagName" class="validation-error"></span>
+        </div>
+    </div>
+    <div class="warning" style="font-size:10px;color:#c00;background:#fff0f0;border:0.5px solid #f5c1c1;border-radius:6px;padding:8px 10px;margin:0 16px;">
+        タグ名を変更すると、このタグが付いたすべての雑学に反映されます。
+    </div>
+    <div class="form-actions" style="margin-top:12px;">
+        <button type="submit" class="btn primary">更新する</button>
+        <a asp-action="Index"><button type="button" class="btn">キャンセル</button></a>
+    </div>
+</form>
